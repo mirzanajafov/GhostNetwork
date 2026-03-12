@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ghostpass
       POSTGRES_DB: ghost
     ports:
-      - "5436:5436"
+      - "5434:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -20,7 +20,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgres://ghost:ghostpass@db:5436/ghost
+      DATABASE_URL: postgres://ghost:ghostpass@db:5434/ghost
     depends_on:
       - db
 
