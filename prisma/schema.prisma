@@ -22,6 +22,8 @@ model RefreshToken {
   id String @id @default(uuid())
   tokenHash String
   userId String
+  userAgent String?
+  ip String?
   expiresAt DateTime
   revoked Boolean @default(false)
   createdAt DateTime @default(now())
