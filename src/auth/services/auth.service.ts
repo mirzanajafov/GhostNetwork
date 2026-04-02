@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { UserService } from '../../user/user.service';
 import { PasswordService } from './password.service';
 import { User } from '@prisma/client';
@@ -15,7 +15,7 @@ export class AuthService {
   async register(email: string, password: string): Promise<User> {
     const existingUser = await this.userService.findByEmail(email);
     if (existingUser) {
-      throw new Error('User already exists');
+      throw new ConflictException('User with this email already exists');
     }
 
     const passwordHash = await this.passwordService.hash(password);
